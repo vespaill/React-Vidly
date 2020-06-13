@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-const Pagination = props => {
-  const { itemsCount, pageSize, currentPage, onPageChange } = props;
-
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   if (pagesCount === 1) return null;
 
@@ -19,9 +17,8 @@ const Pagination = props => {
             className={`page-item${page === currentPage ? ' active' : ''}`}
           >
             <button
-              className="page-link"
+              className="page-link clickable"
               onClick={() => onPageChange(page)}
-              style={{ cursor: 'pointer' }}
             >
               {page}
             </button>

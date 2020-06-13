@@ -50,3 +50,11 @@
     </td>
   </tr>
 </table>
+
+#### 5. Pagination, Filtering and Sorting
+
+- Component design principles.
+- Designing component interfaces—determining what data it should receive and what events it should raise.
+- Building reusable components (ListGroup, Pagination, Table).
+- Refactoring code.
+- Writing clean code.
