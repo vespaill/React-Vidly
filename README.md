@@ -6,7 +6,7 @@
 - Rendering Lists by mapping strings to JSX expressions.
 - Conditional Rendering.
 - Handling events.
-- Updating the state.
+- Updating the state: Whenever a component's state is changed with `setState()` method that component is re-rendered.
 
 #### 4. Composing Components
 
