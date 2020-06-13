@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Like = (props) => {
-  let classes = 'fa';
-  classes += props.liked ? 's' : 'r';
-  classes += ' fa-heart';
+  let classes = `fa${props.liked ? 's' : 'r'} fa-heart`;
   return (
     <i
       onClick={props.onClick}
