@@ -1,11 +1,10 @@
 import React from 'react';
 
 const Like = ({ liked, onClick }) => {
-  let classes = `fa${liked ? 's' : 'r'} fa-heart`;
   return (
     <i
       onClick={onClick}
-      className={`${classes} clickable`}
+      className={`fa${liked ? 's' : 'r'} fa-heart clickable`}
       aria-hidden="true"
     ></i>
   );

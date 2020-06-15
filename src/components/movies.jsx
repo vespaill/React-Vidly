@@ -17,10 +17,17 @@ class Movies extends Component {
     sortColumn: { path: 'title', order: 'asc' }
   };
 
+  /**
+   * Lifecycle hook is invoked immediately after the component is inserted into
+   * the tree. Fetches data from the Movies and Genres APIs.
+   */
   componentDidMount() {
     const selectedGenre = { _id: '', name: 'All Genres' };
-    const genres = [selectedGenre, ...getGenres()];
-    this.setState({ movies: getMovies(), genres, selectedGenre });
+    this.setState({
+      movies: getMovies(),
+      genres: [selectedGenre, ...getGenres()],
+      selectedGenre
+    });
   }
 
   handleDelete = movie => {
@@ -29,11 +36,11 @@ class Movies extends Component {
   };
 
   handleLike = movie => {
-    const movies = [...this.state.movies];
-    const index = movies.indexOf(movie);
-    movies[index] = { ...movie };
-    movies[index].liked = !movies[index].liked;
-    this.setState({ movies });
+    const movies = [...this.state.movies]; /* Copy the movies array. */
+    const index = movies.indexOf(movie); /* Find index of movie to like. */
+    movies[index] = { ...movie }; /* Copy movie props into corresponding elem */
+    movies[index].liked = !movies[index].liked; /* Toggle elem's liked prop */
+    this.setState({ movies }); /* Update state with new movies array. */
   };
 
   handlePageChange = page => {
@@ -48,6 +55,11 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
+  /**
+   * Returns a subset of the movies array that is filtered by the selectedGenre,
+   * ordered by the sortColumn, and paginated acording to the currentPage and
+   * pageSize.
+   */
   getPagedData = () => {
     const {
       pageSize,
@@ -69,10 +81,10 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, sortColumn } = this.state;
 
     if (count === 0) return <p>There are no movies in the database</p>;
 
+    const { pageSize, currentPage, sortColumn } = this.state;
     const { totalCount, movies } = this.getPagedData();
 
     return (
@@ -85,7 +97,6 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          {' '}
           <p>Showing {totalCount} movies in the database</p>
           <MoviesTable
             movies={movies}

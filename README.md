@@ -10,11 +10,11 @@
 
 #### 4. Composing Components
 
-- How to use **props** to pass data to components.
-- How to raise and handle events.
-- How to lift the state up in order to have multiple components sharing the same data and working in sync.
+- Passing data to components via **props**.
+- Raisiing and handling events.
+- Lifting the state up in order to have multiple components sharing the same data and working in sync.
 - Using **Functional components**: components that are stateless and defined as a function as opposed to a class.
-- How to use **Lifecycle hooks**. These are special methods that, when defined on a component, are automatically called by React at certain moments. They allow us to hook into certain moments during the lyfecycle of a component and execute some code.
+- Using **Lifecycle hooks**: special methods that when defined on a component are automatically called by React at certain moments. They allow us to hook into certain moments during the lyfecycle of a component and execute some code.
 
 <table>
   <tr>
@@ -58,3 +58,10 @@
 - Building reusable components (ListGroup, Pagination, Table).
 - Refactoring code.
 - Writing clean code.
+
+#### 6. Routing and Navigation
+- Using Route Parameters.
+- Using Query String.
+- Redirecting users.
+- Implementing Not Found (404) pages.
+- Implementing Nested Routing
