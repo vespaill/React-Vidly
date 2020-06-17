@@ -60,8 +60,15 @@
 - Writing clean code.
 
 #### 6. Routing and Navigation
+
 - Using Route Parameters.
 - Using Query String.
 - Redirecting users.
 - Implementing Not Found (404) pages.
 - Implementing Nested Routing
+
+#### 7. Forms
+
+- Implementing a login, registration forms.
+  -Implementing new movie form.
+- Implementing movie search box.

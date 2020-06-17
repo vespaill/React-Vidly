@@ -6,14 +6,16 @@ class NavBar extends Component {
     links: [
       { path: '/movies', name: 'Movies' },
       { path: '/customers', name: 'Customers' },
-      { path: '/rentals', name: 'Rentals' }
+      { path: '/rentals', name: 'Rentals' },
+      { path: '/login', name: 'Login' },
+      { path: '/register', name: 'Register' }
     ]
   };
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" href="#">Vidly</Link>
+      <nav className="navbar navbar-expand navbar-light bg-light">
+        <Link className="navbar-brand" to="/">Vidly</Link>
         <div className="collapse navbar-collapse">
           <div className="navbar-nav">
             {this.state.links.map(link => (
