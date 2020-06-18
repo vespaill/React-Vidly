@@ -19,7 +19,7 @@ class Form extends Component {
     for (let item of error.details) errors[item.path[0]] = item.message;
     return errors;
 
-    /* Alternative way using reduce */
+    /* Alternative way using Array.reduce */
     // return error.details.reduce((prev, cur) => ({
     //   ...prev,
     //   [cur.path[0]]: cur.message
@@ -81,7 +81,6 @@ class Form extends Component {
 
   renderInput(name, label, type = 'text', autoFocus = false) {
     const { data, errors } = this.state;
-
     return (
       <Input
         name={name}

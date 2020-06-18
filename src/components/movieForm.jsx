@@ -12,10 +12,13 @@ class MovieForm extends Form {
   };
 
   schema = {
-    // Optional
     _id: Joi.string(),
-    title: Joi.string().required().label('Title'),
-    genreId: Joi.string().required().label('Genre'),
+    title: Joi.string()
+      .required()
+      .label('Title'),
+    genreId: Joi.string()
+      .required()
+      .label('Genre'),
     numberInStock: Joi.number()
       .integer()
       .required()
