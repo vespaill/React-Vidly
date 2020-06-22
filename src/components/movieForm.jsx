@@ -26,7 +26,8 @@ class MovieForm extends Form {
       .required()
       .min(0)
       .max(10)
-      .label('Daily Rental Rate')
+      .label('Daily Rental Rate'),
+      liked: Joi.boolean()
   };
 
   async populateGenres() {
@@ -51,8 +52,6 @@ class MovieForm extends Form {
     await this.populateGenres();
     await this.populateMovieForm();
   }
-
-
 
   doSubmit = async () => {
     await saveMovie(this.state.data);
