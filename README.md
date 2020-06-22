@@ -85,7 +85,5 @@
 #### 10. Deployment
 
 - Setting up environment variables—Having configurations for different environments (development, test, production)
-
 - Creating optimized production builds that can be easily deployed to any server.
-
 - Deploying this application and its backend to the Heroku cloud service.
