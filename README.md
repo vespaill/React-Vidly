@@ -81,3 +81,11 @@
 - Calling protected API endpoints.
 - Showing and hiding elements on UI depending on user permission.
 - Protecting routes from unauthenticated or unauthorized users.
+
+#### 10. Deployment
+
+- Setting up environment variables—Having configurations for different environments (development, test, production)
+
+- Creating optimized production builds that can be easily deployed to any server.
+
+- Deploying this application and its backend to the Heroku cloud service.
