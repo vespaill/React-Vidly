@@ -70,5 +70,14 @@
 #### 7. Forms
 
 - Implementing a login, registration forms.
-  -Implementing new movie form.
+- Implementing new movie form.
 - Implementing movie search box.
+
+#### 8. Calling Backend Services
+
+#### 9. Authentication and Authorization
+
+- Working with JSON Web Tokens.
+- Calling protected API endpoints.
+- Showing and hiding elements on UI depending on user permission.
+- Protecting routes from unauthenticated or unauthorized users.

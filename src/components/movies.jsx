@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import MoviesTable from './moviesTable';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
-import { getMovies } from '../services/fakeMovieService';
-import { getGenres } from '../services/fakeGenreService';
+import { getMovies, deleteMovie, saveMovie } from '../services/movieService';
+import { getGenres } from '../services/genreService';
 import { paginate } from '../utils/paginate';
+import { mapToViewModel } from './../utils/mapToViewModel';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import SearchBox from './searchBox';
 
 class Movies extends Component {
@@ -24,27 +26,37 @@ class Movies extends Component {
    * Lifecycle hook is invoked immediately after the component is inserted into
    * the tree. Fetches data from the Movies and Genres APIs.
    */
-  componentDidMount() {
+  async componentDidMount() {
+    const { data: movies } = await getMovies();
+    const { data: genres } = await getGenres();
     const selectedGenre = { _id: '', name: 'All Genres' };
-    this.setState({
-      movies: getMovies(),
-      genres: [selectedGenre, ...getGenres()],
-      selectedGenre,
-      searchQuery: ''
-    });
+    genres.unshift(selectedGenre);
+
+    this.setState({ movies, genres, selectedGenre, searchQuery: '' });
   }
 
-  handleDelete = movie => {
-    const movies = this.state.movies.filter(m => m._id !== movie._id);
+  handleDelete = async movie => {
+    const originalMovies = this.state.movies;
+    const movies = originalMovies.filter(m => m._id !== movie._id);
     this.setState({ movies });
+
+    try {
+      await deleteMovie(movie._id);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404)
+        toast.error('This movie has already been deleted.');
+
+      this.setState({ movies: originalMovies });
+    }
   };
 
-  handleLike = movie => {
+  handleLike = async movie => {
     const movies = [...this.state.movies]; /* Copy the movies array. */
     const index = movies.indexOf(movie); /* Find index of movie to like. */
     movies[index] = { ...movie }; /* Copy movie props into corresponding elem */
     movies[index].liked = !movies[index].liked; /* Toggle elem's liked prop */
     this.setState({ movies }); /* Update state with new movies array. */
+    await saveMovie(mapToViewModel(movies[index])); /* Persist in backend */
   };
 
   handlePageChange = page => {
@@ -60,7 +72,7 @@ class Movies extends Component {
   };
 
   handleSearch = query => {
-    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1, });
+    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
   };
 
   /**
@@ -118,10 +130,7 @@ class Movies extends Component {
             New Movie
           </Link>
           <p>Showing {totalCount} movies in the database</p>
-          <SearchBox
-            value={searchQuery}
-            onChange={this.handleSearch}
-          />
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <MoviesTable
             movies={movies}
             sortColumn={sortColumn}
